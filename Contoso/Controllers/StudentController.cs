@@ -56,7 +56,8 @@ namespace Contoso.Controllers
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         Password = model.Password,
-                        EnrollmentDate = DateTime.Now
+                        EnrollmentDate = DateTime.Now,
+                        State =  model.State
                     };
 
                     _studentService.CreateStudent(student);

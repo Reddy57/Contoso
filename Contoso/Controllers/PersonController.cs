@@ -6,7 +6,7 @@ using System.Web.Security;
 using Contoso.Service;
 using Contoso.ViewModels;
 using Newtonsoft.Json;
-
+using Contoso.Utility;
 namespace Contoso.Controllers
 {
     public class PersonController : Controller
@@ -47,7 +47,11 @@ namespace Contoso.Controllers
         // GET: Person/Create
         public ActionResult Register()
         {
-            return View();
+            var model = new RegisterViewModel
+            {
+                States = Utility.Utility.GetAllStates()
+            };
+            return View(model);
         }
 
         // POST: Person/Create

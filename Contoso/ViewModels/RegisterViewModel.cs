@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Contoso.ViewModels
 {
@@ -22,7 +23,7 @@ namespace Contoso.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
         [DisplayName("Confirm Password")]
         public string ConfirmPassword { get; set; }
 
@@ -37,6 +38,13 @@ namespace Contoso.ViewModels
         [Display(Name = "First Name")]
         [MaxLength(150)]
         public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        public IEnumerable<SelectListItem> States { get; set; }
+
 
     }
 }

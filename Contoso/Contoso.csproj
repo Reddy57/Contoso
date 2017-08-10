@@ -259,6 +259,10 @@
       <Project>{72d8888f-79b1-4059-a91d-9ab0b4f42957}</Project>
       <Name>Contoso.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contoso.Utility\Contoso.Utility.csproj">
+      <Project>{50CD0675-9496-48E5-ACDE-93AAE3DC4CC8}</Project>
+      <Name>Contoso.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
