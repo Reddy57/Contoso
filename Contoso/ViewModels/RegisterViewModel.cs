@@ -39,7 +39,7 @@ namespace Contoso.ViewModels
         [MaxLength(150)]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select your State Location")]
         [Display(Name = "State")]
         public string State { get; set; }
 
