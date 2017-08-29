@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Contoso.Data;
 using Contoso.Data.Repositories;
 using Contoso.Model;
 using Contoso.Service;
@@ -40,6 +41,9 @@ namespace Contoso.Test.Services
             // Arrange
             _mockStudentRepository = new Mock<IStudentRepository>();
             _mockPersonRepository = new Mock<IPersonRepository>();
+
+            IStudentRepository repo = new StudentRepository(new ContosoDbContext());
+
             _studentService = new StudentService(_mockPersonRepository.Object, _mockStudentRepository.Object);
 
             _students = new List<Student>
@@ -122,6 +126,7 @@ namespace Contoso.Test.Services
 
             _mockStudentRepository.Setup(s => s.GetById(It.IsAny<int>()))
                 .Returns((int s) => _students.First(x => x.Id == s));
+
             _mockStudentRepository.Setup(s => s.GetStudentByLastName(It.IsAny<string>()))
                 .Returns((string s) => _students.First(x => x.LastName == s));
         }

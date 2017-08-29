@@ -34,6 +34,7 @@ namespace Contoso
                 if (authTicket != null)
                 {
                     var serializeModel = JsonConvert.DeserializeObject<ContosoPrincipleModel>(authTicket.UserData);
+
                     var newUser = new ContosoPrincipal(authTicket.Name)
                     {
                         PersonId = serializeModel.PersonId,

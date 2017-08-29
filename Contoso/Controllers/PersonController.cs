@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Contoso.Utility;
 namespace Contoso.Controllers
 {
+    
     public class PersonController : Controller
     {
         private readonly IPersonService _personService;
@@ -47,6 +48,7 @@ namespace Contoso.Controllers
         // GET: Person/Create
         public ActionResult Register()
         {
+            
             var model = new RegisterViewModel
             {
                 States = Utility.Utility.GetAllStates()
@@ -81,6 +83,7 @@ namespace Contoso.Controllers
                     if (person != null)
                     {
                         var personRoles = person.Roles.Select(r => r.RoleName).ToArray();
+
                         var serializeModel = new ContosoPrincipleModel
                         {
                             PersonId = person.Id,
@@ -88,14 +91,12 @@ namespace Contoso.Controllers
                             LastName = person.LastName,
                             Roles = personRoles
                         };
-
+                        
                         var userData = JsonConvert.SerializeObject(serializeModel);
-                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now,
-                            DateTime.Now.AddMinutes(15), false, userData);
+                        var authTicket = new FormsAuthenticationTicket(1, person.Email, DateTime.Now, DateTime.Now.AddMinutes(15), false, userData);
                         var encTicket = FormsAuthentication.Encrypt(authTicket);
                         var faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                         Response.Cookies.Add(faCookie);
-
                         return RedirectToAction("Index", "Home");
                     }
                 }

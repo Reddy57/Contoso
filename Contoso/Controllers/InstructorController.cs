@@ -12,6 +12,7 @@ namespace Contoso.Controllers
         public ActionResult Index()
         {
             return View();
+            
         }
 
         // GET: Instructor/Details/5
