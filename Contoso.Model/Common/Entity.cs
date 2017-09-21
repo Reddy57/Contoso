@@ -1,7 +1,7 @@
 ﻿namespace Contoso.Model.Common
 {
-    public abstract class Entity<T> : BaseEntity,IEntity<T>
+    public abstract class Entity : IEntity
     {
-        public virtual T Id { get; set; }
+        public virtual int Id { get; set; }
     }
 }

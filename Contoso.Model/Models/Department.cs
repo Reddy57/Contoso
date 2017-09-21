@@ -5,7 +5,7 @@ using Contoso.Model.Common;
 
 namespace Contoso.Model
 {
-    public class Department : AuditableEntity<int>
+    public class Department : AuditableEntity
     {
         public Department()
         {

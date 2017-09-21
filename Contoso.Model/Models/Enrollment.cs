@@ -8,7 +8,7 @@ using Contoso.Model.Common;
 
 namespace Contoso.Model
 {
-    public class Enrollment: AuditableEntity<int>
+    public class Enrollment: AuditableEntity
     {
         public Enrollment()
         {

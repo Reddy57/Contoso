@@ -8,7 +8,7 @@ using Contoso.Model.Common;
 
 namespace Contoso.Data
 {
-    public abstract class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public abstract class GenericRepository<T> : IRepository<T> where T : Entity
     {
         protected readonly IDbSet<T> _dbSet;
         protected ContosoDbContext _context;

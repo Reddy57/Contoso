@@ -8,7 +8,7 @@ using Contoso.Model.Common;
 
 namespace Contoso.Model.Models
 {
-    public class Role : AuditableEntity<int>
+    public class Role : AuditableEntity
     {
         public Role()
         {

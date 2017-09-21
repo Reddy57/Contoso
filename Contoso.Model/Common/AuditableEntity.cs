@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Contoso.Model.Common
 {
-    public class AuditableEntity<T> : Entity<T>, IAuditableEntity
+    public class AuditableEntity : Entity, IAuditableEntity
     {
         [ScaffoldColumn(false)]
         public DateTime? CreatedDate { get; set; }
