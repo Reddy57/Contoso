@@ -5,6 +5,12 @@ using System.Web.Http.Filters;
 
 namespace Contoso.API.Infrastructure
 {
+    /*
+     * Exception filters in ASP.NET Web API are similar to those in ASP.NET MVC. However, they are declared in a separate namespace and 
+     * function separately. In particular, the HandleErrorAttribute class used in MVC does not handle exceptions thrown by Web API controllers
+     * 
+    */
+
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ContosoApiException : ExceptionFilterAttribute
     {

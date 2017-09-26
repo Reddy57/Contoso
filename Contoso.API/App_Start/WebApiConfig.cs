@@ -13,7 +13,7 @@ namespace Contoso.API
 
             //The handler, like the logger, must be registered in the Web API configuration. 
             //Note that we can only have one Exception Handler per application.
-          //  config.Services.Replace(typeof(IExceptionHandler), new ContosoApiExceptionHandler());
+            config.Services.Replace(typeof(IExceptionHandler), new ContosoApiExceptionHandler());
 
 
             // Web API routes
