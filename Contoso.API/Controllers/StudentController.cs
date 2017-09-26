@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Web.Http;
 using Contoso.API.Infrastructure;
 using Contoso.Model;
@@ -13,7 +11,7 @@ using Contoso.Service;
 namespace Contoso.API.Controllers
 {
     [RoutePrefix("api/Students")]
-     [BasicAuthenticationFilter]
+   // [BasicAuthenticationFilter]
     public class StudentController : ApiController
     {
         private readonly IStudentService _studentService;
@@ -24,12 +22,12 @@ namespace Contoso.API.Controllers
         }
 
         // GET: api/Student
-        [Route("All/{page:int}")]
+        [Route("{page:int}")]
         public HttpResponseMessage GetAllStudents(int? page)
         {
-            int pageNumber = (page ?? 1) - 1;
-            int totalCount = 0;
-            int PageSize = 10;
+            var pageNumber = (page ?? 1) - 1;
+            var totalCount = 0;
+            var PageSize = 10;
             var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
 
             var enumerable = students as IList<Student> ?? students.ToList();
@@ -50,7 +48,6 @@ namespace Contoso.API.Controllers
         // GET: api/Student/5
         [ContosoApiException]
         [Route("{id}")]
-
         public string Get(int id)
         {
             throw new NotImplementedException();

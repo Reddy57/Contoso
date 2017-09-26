@@ -14,7 +14,7 @@ namespace Contoso.API.Infrastructure
                 actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented)
                 {
                     Content = new StringContent(actionExecutedContext.Exception.Message),
-                    ReasonPhrase = "Method is Not Implement, Will implement in later version"
+                    ReasonPhrase = "Method is Not Implemented, Will implement in later version"
                 };
             else if (actionExecutedContext.Exception is ArgumentNullException)
             {
