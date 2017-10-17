@@ -1,5 +1,7 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
+using System.Web.Mvc;
 using Contoso.API.Infrastructure;
 
 namespace Contoso.API
@@ -8,6 +10,8 @@ namespace Contoso.API
     {
         public static void Register(HttpConfiguration config)
         {
+            AreaRegistration.RegisterAllAreas();
+            
             // Web API configuration and services
             config.Filters.Add(new ContosoApiException());
 
@@ -15,6 +19,8 @@ namespace Contoso.API
             //Note that we can only have one Exception Handler per application.
             config.Services.Replace(typeof(IExceptionHandler), new ContosoApiExceptionHandler());
 
+            // will return json format instead of XML (especially in chrome browser)
+             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web API routes
             config.MapHttpAttributeRoutes();

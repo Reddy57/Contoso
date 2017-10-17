@@ -38,7 +38,7 @@ namespace Contoso.API.Controllers
             return response;
         }
 
-        [Route("name/{name}")]
+        [Route("{name}")]
         public IEnumerable<Student> GetStudentsByNameSearch(string name)
         {
             var students = _studentService.GetStudentByName(name);
