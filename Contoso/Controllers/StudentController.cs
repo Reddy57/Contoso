@@ -21,11 +21,9 @@ namespace Contoso.Controllers
         public ActionResult Index(int? page)
         {
             var pageNumber = (page ?? 1) - 1;
-            var totalCount = 0;
-            var PageSize = 10;
-            var students = _studentService.GetAllStudents(page, PageSize, out totalCount);
-            var studentsAsIPagedList = new StaticPagedList<Student>(students, pageNumber + 1, PageSize, totalCount);
-
+            const int pageSize = 10;
+            var students = _studentService.GetAllStudents(page, pageSize, out var totalCount);
+            var studentsAsIPagedList = new StaticPagedList<Student>(students, pageNumber + 1, pageSize, totalCount);
             return View(studentsAsIPagedList);
         }
 
@@ -35,6 +33,7 @@ namespace Contoso.Controllers
             return View();
         }
 
+        
         // GET: Student/Create
         public ActionResult Create()
         {

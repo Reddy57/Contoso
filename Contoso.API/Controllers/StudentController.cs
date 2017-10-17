@@ -22,7 +22,7 @@ namespace Contoso.API.Controllers
         }
 
         // GET: api/Student
-        [Route("{page:int}")]
+        [Route("{page:int?}")]
         public HttpResponseMessage GetAllStudents(int? page)
         {
             var pageNumber = (page ?? 1) - 1;
