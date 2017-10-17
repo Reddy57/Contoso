@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Contoso.Filters;
+﻿using System.Web.Mvc;
+using Contoso.Model;
 
 namespace Contoso.Controllers
 {
     public class DepartmentController : Controller
     {
+      
         // GET: Department
         public ActionResult Index()
         {
@@ -29,7 +26,7 @@ namespace Contoso.Controllers
 
         // POST: Department/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Department department)
         {
             try
             {
