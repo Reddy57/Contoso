@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Contoso.Model.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered">
+    <thead class="table-info">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstructorId)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="bg-light text-dark">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Budget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstructorId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+            </td>
+
+
+        </tr>
+        <tr>
+            <td colspan="5">
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Credits
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var course in item.Courses)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(courseItem => course.Id)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(courseItem => course.Title)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(courseItem => course.Credits)
+
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    }
+    </tbody>
+
+
+</table>

@@ -1,15 +1,22 @@
 ﻿using System.Web.Mvc;
 using Contoso.Model;
+using Contoso.Service;
 
 namespace Contoso.Controllers
 {
     public class DepartmentController : Controller
     {
+        private readonly IDepartmentService _departmentService;
+        public DepartmentController(IDepartmentService departmentService)
+        {
+            _departmentService = departmentService;
+        }
       
         // GET: Department
         public ActionResult Index()
         {
-            return View();
+            var departments = _departmentService.GetAllDepartmentsIncludeCourses();
+            return View(departments);
         }
 
         // GET: Department/Details/5

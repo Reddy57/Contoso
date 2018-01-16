@@ -11,6 +11,7 @@ namespace Contoso.Data.Repositories
     {
         public StudentRepository(ContosoDbContext context) : base(context)
         {
+            
         }
 
         public Student GetStudentByLastName(string lastName)
