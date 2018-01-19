@@ -1,6 +1,8 @@
 using Contoso.Service;
 using Contoso.Model;
 using Contoso.Data.Repositories;
+using Ninject.Web.Common.WebHost;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Contoso.API.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Contoso.API.App_Start.NinjectWebCommon), "Stop")]
 
