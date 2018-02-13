@@ -53,7 +53,6 @@ namespace Contoso.Test.Services
                     Id = 1,
                     FirstName = "Test Name 1",
                     LastName = "Test LastName1",
-                    Age = 23,
                     City = "DC",
                     Email = "test@test.com"
                 },
@@ -62,7 +61,6 @@ namespace Contoso.Test.Services
                     Id = 2,
                     FirstName = "Test Name 2",
                     LastName = "Test LastName2",
-                    Age = 33,
                     City = "DC",
                     Email = "test2@test.com"
                 },
@@ -71,7 +69,6 @@ namespace Contoso.Test.Services
                     Id = 3,
                     FirstName = "Test Name 3",
                     LastName = "Test LastName3",
-                    Age = 43,
                     City = "DC",
                     Email = "test3@test.com"
                 },
@@ -80,7 +77,6 @@ namespace Contoso.Test.Services
                     Id = 4,
                     FirstName = "Test Name 4",
                     LastName = "Test LastName4",
-                    Age = 44,
                     City = "DC",
                     Email = "test4@test.com"
                 },
@@ -89,7 +85,6 @@ namespace Contoso.Test.Services
                     Id = 5,
                     FirstName = "Test Name 5",
                     LastName = "Test LastName5",
-                    Age = 25,
                     City = "DC",
                     Email = "test5@test.com"
                 },
@@ -98,7 +93,6 @@ namespace Contoso.Test.Services
                     Id = 6,
                     FirstName = "Test Name 6",
                     LastName = "Test LastName6",
-                    Age = 26,
                     City = "DC",
                     Email = "test6@test.com"
                 },
@@ -107,7 +101,6 @@ namespace Contoso.Test.Services
                     Id = 7,
                     FirstName = "Test Name 7",
                     LastName = "Test LastName7",
-                    Age = 23,
                     City = "DC",
                     Email = "test7@test.com"
                 },
@@ -116,7 +109,6 @@ namespace Contoso.Test.Services
                     Id = 8,
                     FirstName = "Test Name 8",
                     LastName = "Test LastName8",
-                    Age = 23,
                     City = "DC",
                     Email = "test8@test.com"
                 }

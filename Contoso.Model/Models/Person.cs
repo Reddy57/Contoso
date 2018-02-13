@@ -58,8 +58,8 @@ namespace Contoso.Model
 
         public string FullName => LastName + ", " + FirstName;
 
-        [Display(Name = "Age")]
-        public int Age { get; set; }
+        [Display(Name = "DateofBirth")]
+        public DateTime DateofBirth { get; set; }
 
         [Display(Name = "Email")]
         [MaxLength(150)]

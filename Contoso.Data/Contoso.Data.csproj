@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201705041722560_PersonAccountColumns.Designer.cs">
       <DependentUpon>201705041722560_PersonAccountColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802131712530_ChangeAgoToDob.cs" />
+    <Compile Include="Migrations\201802131712530_ChangeAgoToDob.Designer.cs">
+      <DependentUpon>201802131712530_ChangeAgoToDob.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705041722560_PersonAccountColumns.resx">
       <DependentUpon>201705041722560_PersonAccountColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131712530_ChangeAgoToDob.resx">
+      <DependentUpon>201802131712530_ChangeAgoToDob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
