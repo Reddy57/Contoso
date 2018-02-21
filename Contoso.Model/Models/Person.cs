@@ -26,8 +26,6 @@ namespace Contoso.Model
     (For ad hoc reporting, database views provide a way to offset the complexity of the TPT strategy.
     A view may be used to transform the table-per-type model into the much simpler table-per-hierarchy model.)
 
-
-
     
     Table per Concrete class (TPC): This approach suggests one table for one concrete class,
     but not for the abstract class. So, if you inherit the abstract class in multiple concrete classes, 
