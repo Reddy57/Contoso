@@ -22,7 +22,7 @@ namespace Contoso.Service
 
        public IEnumerable<Department> GetAllDepartmentsIncludeCourses()
        {
-           throw new DivideByZeroException();
+         //  throw new DivideByZeroException();
            return _departmentRepository.GetAllDepartmentsIncludeCourses();
           // return _departmentRepository.GetAllDepartmentsLazyCourses();
        }

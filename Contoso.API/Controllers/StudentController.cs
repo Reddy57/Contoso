@@ -51,7 +51,6 @@ namespace Contoso.API.Controllers
         public string Get(int id)
         {
             throw new NotImplementedException();
-            return "value";
         }
 
         // POST: api/Student
