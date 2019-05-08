@@ -9,12 +9,18 @@ namespace Contoso.Controllers
         private readonly IDepartmentService _departmentService;
         public DepartmentController(IDepartmentService departmentService)
         {
+            //int x = 0;
+            //int y = 1;
+            //int z = y / x;
             _departmentService = departmentService;
         }
       
         // GET: Department
         public ActionResult Index()
         {
+            //int x = 0;
+            //int y = 1;
+            //int z = y / x;
             var departments = _departmentService.GetAllDepartmentsIncludeCourses();
             return View(departments);
         }

@@ -23,6 +23,7 @@ namespace Contoso.API
              config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web API routes
+            // attribute routing in web api
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

@@ -16,7 +16,7 @@ namespace Contoso.Model
     This is a default inheritance mapping strategy in Entity Framework.
     TPH Violates the Third Normal Form
     TPH Requires Properties in SubClasses to be Nullable in the Database
-    The disadvantages of the TPH strategy may be too serious for your design—after all, denormalized schemas can become a major burden in the long run.
+    The disadvantages of the TPH strategy may be too serious for your design—after all, de-normalized schemas can become a major burden in the long run.
     Your DBA may not like it at all. 
    
     Table per Type (TPT): This approach suggests a separate table for each domain class.

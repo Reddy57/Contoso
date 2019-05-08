@@ -24,6 +24,7 @@ namespace Contoso.Test.Services
             var students = _studentService.GetAllStudents(1, 10, out totalCount);
             Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
             Assert.IsNotNull(students);
+            Assert.AreEqual(8, students.Count());
         }
 
         [TestMethod]
