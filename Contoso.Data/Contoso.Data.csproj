@@ -50,25 +50,9 @@
     <Compile Include="ContosoDbContext.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201704191904180_InitialDB.cs" />
-    <Compile Include="Migrations\201704191904180_InitialDB.Designer.cs">
-      <DependentUpon>201704191904180_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704261809515_PeopleTableUNPW.cs" />
-    <Compile Include="Migrations\201704261809515_PeopleTableUNPW.Designer.cs">
-      <DependentUpon>201704261809515_PeopleTableUNPW.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705041708016_RolesPersons.cs" />
-    <Compile Include="Migrations\201705041708016_RolesPersons.Designer.cs">
-      <DependentUpon>201705041708016_RolesPersons.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705041722560_PersonAccountColumns.cs" />
-    <Compile Include="Migrations\201705041722560_PersonAccountColumns.Designer.cs">
-      <DependentUpon>201705041722560_PersonAccountColumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802131712530_ChangeAgoToDob.cs" />
-    <Compile Include="Migrations\201802131712530_ChangeAgoToDob.Designer.cs">
-      <DependentUpon>201802131712530_ChangeAgoToDob.cs</DependentUpon>
+    <Compile Include="Migrations\201907241759337_InitialMigration.cs" />
+    <Compile Include="Migrations\201907241759337_InitialMigration.Designer.cs">
+      <DependentUpon>201907241759337_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,20 +75,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704191904180_InitialDB.resx">
-      <DependentUpon>201704191904180_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704261809515_PeopleTableUNPW.resx">
-      <DependentUpon>201704261809515_PeopleTableUNPW.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705041708016_RolesPersons.resx">
-      <DependentUpon>201705041708016_RolesPersons.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705041722560_PersonAccountColumns.resx">
-      <DependentUpon>201705041722560_PersonAccountColumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802131712530_ChangeAgoToDob.resx">
-      <DependentUpon>201802131712530_ChangeAgoToDob.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907241759337_InitialMigration.resx">
+      <DependentUpon>201907241759337_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

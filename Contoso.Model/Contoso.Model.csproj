@@ -42,10 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\AuditableEntity.cs" />
-    <Compile Include="Common\BaseEntity.cs" />
     <Compile Include="Common\Entity.cs" />
-    <Compile Include="Common\IAuditableEntity.cs" />
-    <Compile Include="Common\IEntity.cs" />
     <Compile Include="Common\PagedResult.cs" />
     <Compile Include="Common\SortExpression.cs" />
     <Compile Include="Models\Course.cs" />

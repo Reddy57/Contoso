@@ -10,90 +10,73 @@ namespace Contoso.Data
 {
     public abstract class GenericRepository<T> : IRepository<T> where T : Entity
     {
-        protected readonly IDbSet<T> _dbSet;
-        protected ContosoDbContext _context;
+        protected ContosoDbContext _dbContext;
 
         protected GenericRepository(ContosoDbContext context)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            _dbContext = context;
         }
 
         public virtual void Add(T entity)
         {
-            _dbSet.Add(entity);
+            _dbContext.Set<T>().Add(entity);
         }
 
         public virtual void Update(T entity)
         {
-            _dbSet.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual void Delete(T entity)
         {
-            _dbSet.Remove(entity);
+            _dbContext.Set<T>().Remove(entity);
         }
 
         public virtual void Delete(Expression<Func<T, bool>> where)
         {
-            var objects = _dbSet.Where(where).AsEnumerable();
+            var objects = _dbContext.Set<T>().Where(where).AsEnumerable();
             foreach (var obj in objects)
-                _dbSet.Remove(obj);
+                _dbContext.Set<T>().Remove(obj);
         }
 
         public virtual T GetById(int id)
         {
-            return _dbSet.Find(id);
+            return _dbContext.Set<T>().Find(id);
         }
 
         public virtual T Get(Expression<Func<T, bool>> where)
         {
-            return _dbSet.Where(where).FirstOrDefault();
+            return _dbContext.Set<T>().Where(where).FirstOrDefault();
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-            return _dbSet.AsNoTracking().ToList();
+            return _dbContext.Set<T>().AsNoTracking().ToList();
         }
 
         public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return _dbSet.Where(where).ToList();
+            return _dbContext.Set<T>().Where(where).ToList();
         }
 
 
-        public virtual IEnumerable<T> AllInclude(params Expression<Func<T, object>>[] includeProperties)
+       public IQueryable<T> GetQueryable()
         {
-            return GetAllIncluding(includeProperties).ToList();
-        }
-
-        public virtual IEnumerable<T> FindByInclude(Expression<Func<T, bool>> predicate,
-            params Expression<Func<T, object>>[] includeProperties)
-        {
-            var query = GetAllIncluding(includeProperties);
-            IEnumerable<T> results = query.Where(predicate).ToList();
-            return results;
-        }
-
-
-        public IQueryable<T> GetQueryable()
-        {
-            return _dbSet.AsQueryable();
+            return _dbContext.Set<T>().AsQueryable();
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            _dbContext.SaveChanges();
         }
 
         public IEnumerable<T> GetPagedList(out int totalCount, int? page = null, int? pageSize = null,
             Expression<Func<T, bool>> filter = null, string[] includePaths = null,
             params SortExpression<T>[] sortExpressions)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query = _dbContext.Set<T>();
             if (filter != null)
-                query = _dbSet.Where(filter);
+                query = _dbContext.Set<T>().Where(filter);
 
             totalCount = query.Count();
 
@@ -131,15 +114,7 @@ namespace Contoso.Data
             return query.ToList();
         }
 
-        public IEnumerable<U> GetBy<U>(Expression<Func<T, U>> columns, Expression<Func<T, bool>> where)
-        {
-            return _dbSet.Where(where).Select(columns);
-        }
-
-        private IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
-        {
-            var queryable = _dbSet.AsNoTracking();
-            return includeProperties.Aggregate(queryable, (current, property) => current.Include(property));
-        }
+      
+       
     }
 }

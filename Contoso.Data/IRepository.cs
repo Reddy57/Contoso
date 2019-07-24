@@ -30,19 +30,11 @@ namespace Contoso.Data
         // Saving the changes to Database
         void SaveChanges();
 
-        IEnumerable<T> AllInclude(params Expression<Func<T, object>>[] includeProperties);
-
-        IEnumerable<T> FindByInclude(Expression<Func<T, bool>> predicate,
-            params Expression<Func<T, object>>[] includeProperties);
-
+       
         IEnumerable<T> GetPagedList(out int totalCount, int? page = null, int? pageSize = null,
             Expression<Func<T, bool>> filter = null, string[] includePaths = null,
             params SortExpression<T>[] sortExpressions);
 
-        IEnumerable<U> GetBy<U>(Expression<Func<T, U>> columns, Expression<Func<T, bool>> where);
-
-      
-        //IEnumerable<T> GetByExpression(Expression<Func<T, bool>> filter = null,
-        //    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "");
+       
     }
 }

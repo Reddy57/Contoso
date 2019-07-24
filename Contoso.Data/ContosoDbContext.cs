@@ -14,8 +14,7 @@ namespace Contoso.Data
            // this.Configuration.LazyLoadingEnabled = false;
         }
 
-        //public DbSet<Student> Students { get; set; }
-        //public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<OfficeAssignment> OfficeAssignments { get; set; }
@@ -26,20 +25,19 @@ namespace Contoso.Data
         public override int SaveChanges()
         {
             var modifiedEntries = ChangeTracker.Entries()
-                .Where(x => x.Entity is IAuditableEntity
+                .Where(x => x.Entity is AuditableEntity
                             &&
-                            (x.State == System.Data.Entity.EntityState.Added ||
-                             x.State == System.Data.Entity.EntityState.Modified));
+                            (x.State == EntityState.Added ||
+                             x.State == EntityState.Modified));
 
             foreach (var entry in modifiedEntries)
             {
-                IAuditableEntity entity = entry.Entity as IAuditableEntity;
-                if (entity != null)
+                if (entry.Entity is AuditableEntity entity)
                 {
                     string identityName = Thread.CurrentPrincipal.Identity.Name;
                     DateTime now = DateTime.Now;
 
-                    if (entry.State == System.Data.Entity.EntityState.Added)
+                    if (entry.State == EntityState.Added)
                     {
                         entity.CreatedBy = identityName;
                         entity.CreatedDate = now;

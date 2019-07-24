@@ -16,7 +16,7 @@ namespace Contoso.Data.Repositories
 
         public Student GetStudentByLastName(string lastName)
         {
-            var student = _context.Persons.OfType<Student>().FirstOrDefault(s => s.LastName == lastName);
+            var student = _dbContext.Persons.OfType<Student>().FirstOrDefault(s => s.LastName == lastName);
             return student;
         }
     }

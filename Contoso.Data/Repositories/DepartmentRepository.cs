@@ -16,13 +16,13 @@ namespace Contoso.Data.Repositories
 
         public IEnumerable<Department> GetAllDepartmentsIncludeCourses()
         {
-            var departments = _context.Departments.Include(d => d.Courses).ToList();
+            var departments = _dbContext.Departments.Include(d => d.Courses).ToList();
             return departments;
         }
 
         public IEnumerable<Department> GetAllDepartmentsLazyCourses()
         {
-            var departments = _context.Departments.ToList();
+            var departments = _dbContext.Departments.ToList();
             return departments;
         }
     }
