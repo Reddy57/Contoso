@@ -19,12 +19,11 @@ namespace Contoso.Controllers
             _personService = personService;
         }
 
-        protected override void OnException(ExceptionContext filterContext)
+        public ActionResult Index()
         {
-            base.OnException(filterContext);
+            return View(_personService.GetAllPeople());
         }
-
-        // GET: Login
+       // GET: Login
         public ActionResult Login()
         {
             return View();

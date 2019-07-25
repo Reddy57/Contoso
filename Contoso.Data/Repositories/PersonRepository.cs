@@ -12,10 +12,16 @@ namespace Contoso.Data.Repositories
         public PersonRepository(ContosoDbContext context) : base(context)
         {
         }
+
+        public IEnumerable<Person> GetAllPeople()
+        {
+            var people = _dbContext.Persons.ToList();
+            return people;
+        }
     }
 
-    public interface IPersonRepository:IRepository<Person>
-    {
-        
-    }
+   public interface IPersonRepository : IRepository<Person>
+   {
+       IEnumerable<Person> GetAllPeople();
+   }
 }

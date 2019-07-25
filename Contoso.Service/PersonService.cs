@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Contoso.Data.Repositories;
 using Contoso.Model;
 
@@ -36,6 +37,11 @@ namespace Contoso.Service
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Person> GetAllPeople()
+        {
+            return _personRepository.GetAllPeople();
+        }
     }
 
     public interface IPersonService
@@ -44,5 +50,6 @@ namespace Contoso.Service
         Person GetValidPerson(string username, string password);
         void AddPerson(Person person, List<string> roles);
         List<Person> GetPeopleByRole(int roleId);
+        IEnumerable<Person> GetAllPeople();
     }
 }

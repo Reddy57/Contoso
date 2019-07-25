@@ -34,7 +34,7 @@ namespace Contoso.Model
      */
 
 
-    public abstract class Person : AuditableEntity
+    public class Person : AuditableEntity
     {
         [Required]
         [StringLength(50)]
