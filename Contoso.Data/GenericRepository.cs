@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Contoso.Model.Common;
+using Contoso.Utility;
 
 namespace Contoso.Data
 {
@@ -60,7 +61,7 @@ namespace Contoso.Data
         }
 
 
-       public IQueryable<T> GetQueryable()
+        public IQueryable<T> GetQueryable()
         {
             return _dbContext.Set<T>().AsQueryable();
         }
@@ -71,8 +72,8 @@ namespace Contoso.Data
         }
 
         public IEnumerable<T> GetPagedList(out int totalCount, int? page = null, int? pageSize = null,
-            Expression<Func<T, bool>> filter = null, string[] includePaths = null,
-            params SortExpression<T>[] sortExpressions)
+                                           Expression<Func<T, bool>> filter = null, string[] includePaths = null,
+                                           params SortExpression<T>[] sortExpressions)
         {
             IQueryable<T> query = _dbContext.Set<T>();
             if (filter != null)
@@ -114,7 +115,17 @@ namespace Contoso.Data
             return query.ToList();
         }
 
-      
-       
+        public PagedResultSet<T> GetPagedData(int currentPage, int pageSize)
+        {
+            IQueryable<T> query = _dbContext.Set<T>();
+
+            var totalRowCount = query.Count();
+            var currentPageIndex = currentPage;
+            var skip = (currentPageIndex - 1) * pageSize;
+            var data = query.Skip(skip).Take(pageSize).ToList();
+
+            var pagedResult = new PagedResultSet<T>(currentPageIndex, pageSize, totalRowCount, data);
+            return pagedResult;
+        }
     }
 }

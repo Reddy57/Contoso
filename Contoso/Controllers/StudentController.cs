@@ -22,6 +22,7 @@ namespace Contoso.Controllers
         {
             var pageNumber = (page ?? 1) - 1;
             const int pageSize = 10;
+            var newStds = _studentService.GetStudentsByPagination(page, pageSize);
             var students = _studentService.GetAllStudents(page, pageSize, out var totalCount);
             var studentsAsIPagedList = new StaticPagedList<Student>(students, pageNumber + 1, pageSize, totalCount);
             return View(studentsAsIPagedList);

@@ -57,6 +57,10 @@
       <Project>{71A64967-9119-4407-A773-BDAA1A9A6DB0}</Project>
       <Name>Contoso.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contoso.Utility\Contoso.Utility.csproj">
+      <Project>{50cd0675-9496-48e5-acde-93aae3dc4cc8}</Project>
+      <Name>Contoso.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

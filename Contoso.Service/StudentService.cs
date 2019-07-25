@@ -6,6 +6,7 @@ using System.Transactions;
 using Contoso.Data.Repositories;
 using Contoso.Model;
 using Contoso.Model.Common;
+using Contoso.Utility;
 
 namespace Contoso.Service
 {
@@ -24,7 +25,13 @@ namespace Contoso.Service
         {
             var students = _studentRepository.GetPagedList(out totalCount, page, pageSize, null, null,
                 new SortExpression<Student>(s => s.FirstName, ListSortDirection.Ascending));
+
             return students;
+        }
+
+        public PagedResultSet<Student> GetStudentsByPagination(int? page, int pageSize)
+        {
+            return _studentRepository.GetPagedData(page ?? 0, pageSize);
         }
 
         public Student GetStudentById(int id)
@@ -61,6 +68,7 @@ namespace Contoso.Service
     public interface IStudentService
     {
         IEnumerable<Student> GetAllStudents(int? page, int pageSize, out int totalCount);
+        PagedResultSet<Student> GetStudentsByPagination(int? page, int pageSize);
         Student GetStudentById(int id);
         IEnumerable<Student> GetStudentByName(string name);
         Student GetStudentByCode(string employeeCode);

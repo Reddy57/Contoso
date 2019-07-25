@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Contoso.Model.Common;
+using Contoso.Utility;
 
 namespace Contoso.Data
 {
@@ -35,6 +36,8 @@ namespace Contoso.Data
             Expression<Func<T, bool>> filter = null, string[] includePaths = null,
             params SortExpression<T>[] sortExpressions);
 
-       
+        PagedResultSet<T> GetPagedData(int currentPage, int pageSize);
+
+
     }
 }
