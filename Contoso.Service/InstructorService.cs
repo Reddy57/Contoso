@@ -15,9 +15,9 @@ namespace Contoso.Service
         {
             _instructorRepository = instructorRepository;
         }
-        public IEnumerable<Instructor> GetAllInstructors(int? page, int pageSize, out int totalCount)
+        public IEnumerable<Instructor> GetAllInstructors()
         {
-            throw new NotImplementedException();
+            return _instructorRepository.GetAll();
         }
 
         public Instructor GetInstructorById(int id)
@@ -48,7 +48,7 @@ namespace Contoso.Service
 
    public interface IInstructorService
     {
-        IEnumerable<Instructor> GetAllInstructors(int? page, int pageSize, out int totalCount);
+        IEnumerable<Instructor> GetAllInstructors();
         Instructor GetInstructorById(int id);
         IEnumerable<Instructor> GetInstructorByName(string name);
         Instructor GetInstructorByCode(string employeeCode);

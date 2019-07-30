@@ -1,20 +1,24 @@
-﻿using System.Web.Mvc;
-using Contoso.Model;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Contoso.Service;
+using Contoso.ViewModels;
 
 namespace Contoso.Controllers
 {
     public class DepartmentController : Controller
     {
         private readonly IDepartmentService _departmentService;
-        public DepartmentController(IDepartmentService departmentService)
+        private readonly IInstructorService _instructorService;
+
+        public DepartmentController(IDepartmentService departmentService, IInstructorService instructorService)
         {
             //int x = 0;
             //int y = 1;
             //int z = y / x;
             _departmentService = departmentService;
+            _instructorService = instructorService;
         }
-      
+
         // GET: Department
         public ActionResult Index()
         {
@@ -34,12 +38,27 @@ namespace Contoso.Controllers
         // GET: Department/Create
         public ActionResult Create()
         {
-            return View();
+            var instructors = _instructorService.GetAllInstructors()
+                                                .Select(n => new SelectListItem
+                                                             {
+                                                                 Text = n.FullName, Value = n.Id.ToString()
+                                                             }).ToList();
+            instructors.Insert(0,
+                               new SelectListItem {Value = null, Text = @"--- select Instructor ---"});
+
+            var departmentCreate = new CreateDepartmentViewModel
+                                   {
+                                       Instructors =
+                                           instructors
+                                   };
+
+
+            return View(departmentCreate);
         }
 
         // POST: Department/Create
         [HttpPost]
-        public ActionResult Create(Department department)
+        public ActionResult Create(CreateDepartmentViewModel department)
         {
             try
             {
