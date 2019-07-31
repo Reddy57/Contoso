@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Web.Mvc;
 using log4net;
 
@@ -23,8 +22,9 @@ namespace Contoso.Filters
         
       */
 
-    // Extending HandleError
-
+    /// <summary>
+    ///     Extending HandleError
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ContosoExceptionFilter : HandleErrorAttribute
     {
@@ -42,20 +42,20 @@ namespace Contoso.Filters
             var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
 
             filterContext.Result = new ViewResult
-            {
-                ViewName = View,
-                MasterName = Master,
-                ViewData = new ViewDataDictionary<HandleErrorInfo>(model),
-                TempData = filterContext.Controller.TempData
-            };
+                                   {
+                                       ViewName = View,
+                                       MasterName = Master,
+                                       ViewData = new ViewDataDictionary<HandleErrorInfo>(model),
+                                       TempData = filterContext.Controller.TempData
+                                   };
 
             var dateExceptionHappened = DateTime.Now.TimeOfDay.ToString();
             //set breakpoing on the following line to see what the requested path and query is
             var pathAndQuery = filterContext.HttpContext.Request.Path + filterContext.HttpContext.Request.QueryString;
 
-          // throw new FileNotFoundException();
-            // log the error using log4net.
-           
+            // throw new FileNotFoundException();
+            // log the error using log4net  or nLog.
+
 
             filterContext.ExceptionHandled = true;
             filterContext.HttpContext.Response.Clear();

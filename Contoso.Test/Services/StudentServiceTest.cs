@@ -8,35 +8,51 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Contoso.Test.Services
-{ 
+{
     /*
     Arrange: Initializes objects, creates mocks with arguments that are passed to the method under test and adds expectations.
     Act: Invokes the method or property under test with the arranged parameters.
     Assert: Verifies that the action of the method under test behaves as expected.
     */
 
+    // The TestClass attribute denotes a class that contains unit tests
     [TestClass]
     public class StudentServiceTest
     {
+        // arrange
+
         private Mock<IPersonRepository> _mockPersonRepository;
         private Mock<IStudentRepository> _mockStudentRepository;
         private List<Student> _students;
         private IStudentService _studentService;
 
+        // The TestMethod attribute indicates a method is a test method.
         [TestMethod]
         public void Check_StudentsCountFromTheFakeData()
         {
             var totalCount = 0;
+
+            // act
             var students = _studentService.GetAllStudents(1, 10, out totalCount);
+
+            // assert
             Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
             Assert.IsNotNull(students);
             Assert.AreEqual(8, students.Count());
         }
 
-        [TestMethod]
-        public void Check_Student_ById_FromTheFakeData()
+        /// <summary>
+        /// A DataTestMethod attribute represents a suite of tests that execute the same code but have different input arguments.
+        /// You can use the DataRow attribute to specify values for those inputs.
+        /// </summary>
+        //[TestMethod]
+        [DataTestMethod]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
+        public void Check_Student_ById_FromTheFakeData(int id)
         {
-            var student = _studentService.GetStudentById(2);
+            var student = _studentService.GetStudentById(id);
             Assert.IsNotNull(student); // Test if student is null or not
             Assert.IsInstanceOfType(student, typeof(Student)); //  Test if type returned is Student
             Assert.AreEqual("Test LastName2", student.LastName);
