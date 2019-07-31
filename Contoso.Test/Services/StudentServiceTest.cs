@@ -39,13 +39,14 @@ namespace Contoso.Test.Services
             // assert
             Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
             Assert.IsNotNull(students);
-         //   Assert.AreEqual(8, students.Count());
-            CollectionAssert.AllItemsAreInstancesOfType(students.ToList(),typeof(Student));
+            //   Assert.AreEqual(8, students.Count());
+            CollectionAssert.AllItemsAreInstancesOfType(students.ToList(), typeof(Student));
         }
 
         /// <summary>
-        /// A DataTestMethod attribute represents a suite of tests that execute the same code but have different input arguments.
-        /// You can use the DataRow attribute to specify values for those inputs.
+        ///     A DataTestMethod attribute represents a suite of tests that execute the same code but have different input
+        ///     arguments.
+        ///     You can use the DataRow attribute to specify values for those inputs.
         /// </summary>
         //[TestMethod]
         [DataTestMethod]
@@ -61,12 +62,12 @@ namespace Contoso.Test.Services
         }
 
         [DataTestMethod]
-        [DataRow(0 )]
-        [DataRow(-1 )]
+        [DataRow(0)]
+        [DataRow(-1)]
         public void Check_Student_ById_FromTheFakeDataForExceptions(int id)
         {
-            Assert.ThrowsException<InvalidOperationException>(() => _studentService.GetStudentById(id));
-
+            var ex = Assert.ThrowsException<InvalidOperationException>(() => _studentService.GetStudentById(id));
+            Assert.AreEqual("Sequence contains no matching element", ex.Message);
         }
 
         [TestInitialize]
