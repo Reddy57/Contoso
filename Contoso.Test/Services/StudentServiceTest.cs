@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Contoso.Data;
 using Contoso.Data.Repositories;
@@ -38,7 +39,8 @@ namespace Contoso.Test.Services
             // assert
             Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
             Assert.IsNotNull(students);
-            Assert.AreEqual(8, students.Count());
+         //   Assert.AreEqual(8, students.Count());
+            CollectionAssert.AllItemsAreInstancesOfType(students.ToList(),typeof(Student));
         }
 
         /// <summary>
@@ -47,15 +49,24 @@ namespace Contoso.Test.Services
         /// </summary>
         //[TestMethod]
         [DataTestMethod]
-        [DataRow(1)]
-        [DataRow(2)]
-        [DataRow(3)]
-        public void Check_Student_ById_FromTheFakeData(int id)
+        [DataRow(1, "Test LastName1")]
+        [DataRow(2, "Test LastName2")]
+        [DataRow(3, "Test LastName3")]
+        public void Check_Student_ById_FromTheFakeData(int id, string expectedLastName)
         {
             var student = _studentService.GetStudentById(id);
             Assert.IsNotNull(student); // Test if student is null or not
             Assert.IsInstanceOfType(student, typeof(Student)); //  Test if type returned is Student
-            Assert.AreEqual("Test LastName2", student.LastName);
+            Assert.AreEqual(expectedLastName, student.LastName);
+        }
+
+        [DataTestMethod]
+        [DataRow(0 )]
+        [DataRow(-1 )]
+        public void Check_Student_ById_FromTheFakeDataForExceptions(int id)
+        {
+            Assert.ThrowsException<InvalidOperationException>(() => _studentService.GetStudentById(id));
+
         }
 
         [TestInitialize]
