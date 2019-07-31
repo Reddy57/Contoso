@@ -8,19 +8,25 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Contoso.Test.Services
-{
+{ 
+    /*
+    Arrange: Initializes objects, creates mocks with arguments that are passed to the method under test and adds expectations.
+    Act: Invokes the method or property under test with the arranged parameters.
+    Assert: Verifies that the action of the method under test behaves as expected.
+    */
+
     [TestClass]
     public class StudentServiceTest
     {
         private Mock<IPersonRepository> _mockPersonRepository;
         private Mock<IStudentRepository> _mockStudentRepository;
-        private IStudentService _studentService;
         private List<Student> _students;
+        private IStudentService _studentService;
 
         [TestMethod]
         public void Check_StudentsCountFromTheFakeData()
         {
-            int totalCount=0;
+            var totalCount = 0;
             var students = _studentService.GetAllStudents(1, 10, out totalCount);
             Assert.IsInstanceOfType(students, typeof(IEnumerable<Student>));
             Assert.IsNotNull(students);
@@ -48,80 +54,80 @@ namespace Contoso.Test.Services
             _studentService = new StudentService(_mockPersonRepository.Object, _mockStudentRepository.Object);
 
             _students = new List<Student>
-            {
-                new Student
-                {
-                    Id = 1,
-                    FirstName = "Test Name 1",
-                    LastName = "Test LastName1",
-                    City = "DC",
-                    Email = "test@test.com"
-                },
-                new Student
-                {
-                    Id = 2,
-                    FirstName = "Test Name 2",
-                    LastName = "Test LastName2",
-                    City = "DC",
-                    Email = "test2@test.com"
-                },
-                new Student
-                {
-                    Id = 3,
-                    FirstName = "Test Name 3",
-                    LastName = "Test LastName3",
-                    City = "DC",
-                    Email = "test3@test.com"
-                },
-                new Student
-                {
-                    Id = 4,
-                    FirstName = "Test Name 4",
-                    LastName = "Test LastName4",
-                    City = "DC",
-                    Email = "test4@test.com"
-                },
-                new Student
-                {
-                    Id = 5,
-                    FirstName = "Test Name 5",
-                    LastName = "Test LastName5",
-                    City = "DC",
-                    Email = "test5@test.com"
-                },
-                new Student
-                {
-                    Id = 6,
-                    FirstName = "Test Name 6",
-                    LastName = "Test LastName6",
-                    City = "DC",
-                    Email = "test6@test.com"
-                },
-                new Student
-                {
-                    Id = 7,
-                    FirstName = "Test Name 7",
-                    LastName = "Test LastName7",
-                    City = "DC",
-                    Email = "test7@test.com"
-                },
-                new Student
-                {
-                    Id = 8,
-                    FirstName = "Test Name 8",
-                    LastName = "Test LastName8",
-                    City = "DC",
-                    Email = "test8@test.com"
-                }
-            };
+                        {
+                            new Student
+                            {
+                                Id = 1,
+                                FirstName = "Test Name 1",
+                                LastName = "Test LastName1",
+                                City = "DC",
+                                Email = "test@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 2,
+                                FirstName = "Test Name 2",
+                                LastName = "Test LastName2",
+                                City = "DC",
+                                Email = "test2@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 3,
+                                FirstName = "Test Name 3",
+                                LastName = "Test LastName3",
+                                City = "DC",
+                                Email = "test3@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 4,
+                                FirstName = "Test Name 4",
+                                LastName = "Test LastName4",
+                                City = "DC",
+                                Email = "test4@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 5,
+                                FirstName = "Test Name 5",
+                                LastName = "Test LastName5",
+                                City = "DC",
+                                Email = "test5@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 6,
+                                FirstName = "Test Name 6",
+                                LastName = "Test LastName6",
+                                City = "DC",
+                                Email = "test6@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 7,
+                                FirstName = "Test Name 7",
+                                LastName = "Test LastName7",
+                                City = "DC",
+                                Email = "test7@test.com"
+                            },
+                            new Student
+                            {
+                                Id = 8,
+                                FirstName = "Test Name 8",
+                                LastName = "Test LastName8",
+                                City = "DC",
+                                Email = "test8@test.com"
+                            }
+                        };
 
             _mockStudentRepository.Setup(s => s.GetAll()).Returns(_students);
 
             _mockStudentRepository.Setup(s => s.GetById(It.IsAny<int>()))
-                .Returns((int s) => _students.First(x => x.Id == s));
+                                  .Returns((int s) => _students.First(x => x.Id == s));
 
             _mockStudentRepository.Setup(s => s.GetStudentByLastName(It.IsAny<string>()))
-                .Returns((string s) => _students.First(x => x.LastName == s));
+                                  .Returns((string s) => _students.First(x => x.LastName == s));
         }
     }
 }
