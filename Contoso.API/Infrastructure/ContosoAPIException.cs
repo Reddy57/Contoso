@@ -16,23 +16,34 @@ namespace Contoso.API.Infrastructure
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
-            if (actionExecutedContext.Exception is NotImplementedException)
-                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented)
-                {
-                    Content = new StringContent(actionExecutedContext.Exception.Message),
-                    ReasonPhrase = "Method is Not Implemented, Will implement in later version"
-                };
-            else if (actionExecutedContext.Exception is ArgumentNullException)
+            switch (actionExecutedContext.Exception)
             {
-                actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.BadRequest)
-                {
-                    Content = new StringContent(actionExecutedContext.Exception.Message),
-                    ReasonPhrase = "Please check your request "
-                };
+                case NotImplementedException _:
+                    actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented)
+                                                     {
+                                                         Content =
+                                                             new StringContent(actionExecutedContext.Exception.Message),
+                                                         ReasonPhrase =
+                                                             "Method is Not Implemented, Will implement in later version"
+                                                     };
+                    break;
+                case ArgumentNullException _:
+                    actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                                                     {
+                                                         Content =
+                                                             new StringContent(actionExecutedContext.Exception.Message),
+                                                         ReasonPhrase = "Please check your request "
+                                                     };
+                    break;
+                default:
+                    actionExecutedContext.Response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                                                     {
+                                                         Content =
+                                                             new StringContent(actionExecutedContext.Exception.Message),
+                                                         ReasonPhrase = "Something went wrong, try again later "
+                                                     };
+                    break;
             }
-          
-            
         }
-       
     }
 }

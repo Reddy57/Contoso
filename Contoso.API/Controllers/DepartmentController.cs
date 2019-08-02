@@ -1,6 +1,12 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
+using Contoso.API.DTO;
+using Contoso.API.Utilities;
+using Contoso.Model;
 using Contoso.Service;
 
 namespace Contoso.API.Controllers
@@ -17,14 +23,17 @@ namespace Contoso.API.Controllers
 
         [HttpGet]
         [Route("")]
-        public IHttpActionResult GetDepartments([FromUri] int pageSize, [FromUri] int page = 1,
+        public IHttpActionResult GetDepartments([FromUri] int pageSize = 8, [FromUri] int page = 1,
                                                 [FromUri] string name = "")
         {
             var totalDepartmentsCount = _departmentService.GetTotalDepartments();
             var departments = _departmentService.GetDepartmentsPagination(pageSize, page, name);
-
-            var response = totalDepartmentsCount > 0 && departments != null
-                ? Request.CreateResponse(HttpStatusCode.OK, departments)
+            var pagedDepartments = new PagedResultSet<DepartmentDTO>(page, pageSize, totalDepartmentsCount,
+                                                                     Mapper
+                                                                         .Map<IList<Department>, IList<DepartmentDTO>
+                                                                         >(departments.ToList()));
+            var response = totalDepartmentsCount > 0
+                ? Request.CreateResponse(HttpStatusCode.OK, pagedDepartments)
                 : Request.CreateResponse(HttpStatusCode.NotFound, "No Departments");
             return ResponseMessage(response);
         }

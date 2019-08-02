@@ -27,7 +27,7 @@ namespace Contoso.Data.Repositories
         {
             var query = _dbContext.Departments.AsQueryable();
             if (!string.IsNullOrEmpty(name)) query = query.Where(a => a.Name.Contains(name));
-            var departments = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var departments = query.OrderBy(d => d.Name).Skip((page - 1) * pageSize).Take(pageSize).ToList();
             return departments;
         }
     }

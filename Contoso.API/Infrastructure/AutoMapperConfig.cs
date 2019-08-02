@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using AutoMapper;
+using Contoso.API.DTO;
+using Contoso.Model;
 
 namespace Contoso.API.Infrastructure
 {
@@ -9,7 +8,9 @@ namespace Contoso.API.Infrastructure
     {
         public static void RegisterMappings()
         {
-
+            Mapper.Initialize(config =>
+                                  config.CreateMap<Department, DepartmentDTO>()
+                             );
         }
     }
 }
