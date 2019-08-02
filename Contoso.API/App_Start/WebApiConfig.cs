@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Mvc;
 using Contoso.API.Infrastructure;
+using Newtonsoft.Json.Serialization;
 
 namespace Contoso.API
 {
@@ -25,7 +26,8 @@ namespace Contoso.API
             // Web API routes
             // attribute routing in web api
             config.MapHttpAttributeRoutes();
-
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
+                new CamelCasePropertyNamesContractResolver();
             config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{controller}/{id}",

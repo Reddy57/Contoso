@@ -11,15 +11,15 @@ namespace Contoso.API.Utilities
 
         public int PageSize { get; }
 
-        public long Count { get; }
+        public long TotalRecords { get; }
 
         public IEnumerable<TEntity> Data { get; }
 
-        public PagedResultSet(int pageIndex, int pageSize, int count, IEnumerable<TEntity> data)
+        public PagedResultSet(int pageIndex, int pageSize, int totalRecords, IEnumerable<TEntity> data)
         {
             PageIndex = pageIndex;
             PageSize = pageSize;
-            Count = count;
+            TotalRecords = totalRecords;
             Data = data;
         }
 

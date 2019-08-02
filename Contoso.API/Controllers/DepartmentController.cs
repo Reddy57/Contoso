@@ -32,9 +32,9 @@ namespace Contoso.API.Controllers
                                                                      Mapper
                                                                          .Map<IList<Department>, IList<DepartmentDTO>
                                                                          >(departments.ToList()));
-            var response = totalDepartmentsCount > 0
+            var response = pagedDepartments.Data.Any()
                 ? Request.CreateResponse(HttpStatusCode.OK, pagedDepartments)
-                : Request.CreateResponse(HttpStatusCode.NotFound, "No Departments");
+                : Request.CreateResponse(HttpStatusCode.NotFound, "No Departments for your query");
             return ResponseMessage(response);
         }
     }
