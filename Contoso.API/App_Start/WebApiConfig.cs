@@ -28,6 +28,9 @@ namespace Contoso.API
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+
+            config.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "d MMMM, yyyy";
+
             config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "api/{controller}/{id}",
