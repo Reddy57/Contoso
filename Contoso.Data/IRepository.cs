@@ -28,6 +28,7 @@ namespace Contoso.Data
         //IQueryable entity
         IQueryable<T> GetQueryable();
 
+        int GetCount(Expression<Func<T, bool>> filter = null);
         // Saving the changes to Database
         void SaveChanges();
 

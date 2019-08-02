@@ -26,11 +26,18 @@ namespace Contoso.Service
            return _departmentRepository.GetAllDepartmentsIncludeCourses();
           // return _departmentRepository.GetAllDepartmentsLazyCourses();
        }
+
+       public IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "")
+       {
+           return _departmentRepository.GetDepartmentsPagination(pageSize, pageIndex, name);
+       }
    }
 
    public interface IDepartmentService
    {
        IEnumerable<Department> GetAllDepartments();
        IEnumerable<Department> GetAllDepartmentsIncludeCourses();
+       IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "");
+
     }
 }

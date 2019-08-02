@@ -66,6 +66,11 @@ namespace Contoso.Data
             return _dbContext.Set<T>().AsQueryable();
         }
 
+        public int GetCount(Expression<Func<T, bool>> filter = null)
+        {
+            return filter!=null ? _dbContext.Set<T>().Where(filter).Count() : _dbContext.Set<T>().Count();
+        }
+
         public void SaveChanges()
         {
             _dbContext.SaveChanges();

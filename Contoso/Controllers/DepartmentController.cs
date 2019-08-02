@@ -48,8 +48,7 @@ namespace Contoso.Controllers
 
             var departmentCreate = new CreateDepartmentViewModel
                                    {
-                                       Instructors =
-                                           instructors
+                                       Instructors = instructors
                                    };
 
 

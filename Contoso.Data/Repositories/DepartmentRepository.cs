@@ -25,12 +25,21 @@ namespace Contoso.Data.Repositories
             var departments = _dbContext.Departments.ToList();
             return departments;
         }
+
+        public IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "")
+        {
+            var query = _dbContext.Departments.AsQueryable();
+            if (!string.IsNullOrEmpty(name)) query = query.Where(a => a.Name.Contains(name));
+            var departments =  query.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            return departments;
+        }
     }
 
     public interface IDepartmentRepository : IRepository<Department>
     {
         IEnumerable<Department> GetAllDepartmentsIncludeCourses();
         IEnumerable<Department> GetAllDepartmentsLazyCourses();
+        IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "");
 
     }
 }

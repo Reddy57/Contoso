@@ -16,6 +16,7 @@ namespace Contoso.ViewModels
 
         [Required(ErrorMessage = "Please enter Budget")]
         [Range(100, 100000)]
+        [DataType(DataType.Currency)]
         public decimal Budget { get; set; }
 
         public DateTime StartDate { get; set; }
