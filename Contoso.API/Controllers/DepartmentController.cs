@@ -26,7 +26,7 @@ namespace Contoso.API.Controllers
         public IHttpActionResult GetDepartments([FromUri] int pageSize = 8, [FromUri] int page = 1,
                                                 [FromUri] string name = "")
         {
-            var totalDepartmentsCount = _departmentService.GetTotalDepartments();
+            var totalDepartmentsCount = _departmentService.GetTotalDepartments(name);
             var departments = _departmentService.GetDepartmentsPagination(pageSize, page, name);
             var pagedDepartments = new PagedResultSet<DepartmentDTO>(page, pageSize, totalDepartmentsCount,
                                                                      Mapper

@@ -32,10 +32,11 @@ namespace Contoso.Service
            return _departmentRepository.GetDepartmentsPagination(pageSize, pageIndex, name);
        }
 
-       public int GetTotalDepartments()
+       public int GetTotalDepartments(string name="")
        {
-           return _departmentRepository.GetCount();
-       }
+           if (string.IsNullOrEmpty(name)) return _departmentRepository.GetCount();
+           return _departmentRepository.GetCount(d => d.Name.Contains(name));
+        }
    }
 
    public interface IDepartmentService
@@ -43,6 +44,6 @@ namespace Contoso.Service
        IEnumerable<Department> GetAllDepartments();
        IEnumerable<Department> GetAllDepartmentsIncludeCourses();
        IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "");
-       int GetTotalDepartments();
+       int GetTotalDepartments(string name = "");
    }
 }
