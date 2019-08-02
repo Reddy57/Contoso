@@ -11,7 +11,7 @@ namespace Contoso.API
         public static void Register(HttpConfiguration config)
         {
             AreaRegistration.RegisterAllAreas();
-            
+            AutoMapperConfig.RegisterMappings();
             // Web API configuration and services
             config.Filters.Add(new ContosoApiException());
 

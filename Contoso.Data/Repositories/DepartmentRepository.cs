@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Contoso.Model;
 
 namespace Contoso.Data.Repositories
 {
-   public class DepartmentRepository: GenericRepository<Department>, IDepartmentRepository
+    public class DepartmentRepository : GenericRepository<Department>, IDepartmentRepository
     {
         public DepartmentRepository(ContosoDbContext context) : base(context)
         {
@@ -26,11 +23,11 @@ namespace Contoso.Data.Repositories
             return departments;
         }
 
-        public IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "")
+        public IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int page = 1, string name = "")
         {
             var query = _dbContext.Departments.AsQueryable();
             if (!string.IsNullOrEmpty(name)) query = query.Where(a => a.Name.Contains(name));
-            var departments =  query.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var departments = query.Skip((page - 1) * pageSize).Take(pageSize).ToList();
             return departments;
         }
     }
@@ -40,6 +37,5 @@ namespace Contoso.Data.Repositories
         IEnumerable<Department> GetAllDepartmentsIncludeCourses();
         IEnumerable<Department> GetAllDepartmentsLazyCourses();
         IEnumerable<Department> GetDepartmentsPagination(int pageSize = 8, int pageIndex = 0, string name = "");
-
     }
 }
